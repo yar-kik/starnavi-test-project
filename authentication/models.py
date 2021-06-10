@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_request = models.DateTimeField()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['username', 'email']
+    REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
 
