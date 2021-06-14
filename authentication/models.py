@@ -1,22 +1,28 @@
 import jwt
 from datetime import datetime, timedelta
 from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
-    PermissionsMixin
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 from django.db import models
 
 
 class UserManager(BaseUserManager):
     """Custom user manager class"""
 
-    def create_user(self, username: str,
-                    email: str, password: str = None) -> "User":
+    def create_user(
+        self, username: str, email: str, password: str = None
+    ) -> "User":
         """Create and return user with username, email and password"""
         if username is None:
             raise TypeError("Users must have a username")
         if email is None:
             raise TypeError("Users must have a email")
-        user: "User" = self.model(username=username, email=self.normalize_email(email))
+        user: "User" = self.model(
+            username=username, email=self.normalize_email(email)
+        )
         user.set_password(password)
         user.save()
         return user
@@ -39,8 +45,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     last_request = models.DateTimeField(null=True)
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
 
     objects = UserManager()
 
@@ -56,13 +62,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def _generate_jwt_token(self) -> str:
         """Generate JWT token with user id and status"""
         payload = {
-            'exp': datetime.utcnow() + timedelta(**settings.TOKEN_EXPIRATION),
-            'iat': datetime.utcnow(),
-            'sub': self.pk,
-            'admin': self.is_superuser
+            "exp": datetime.utcnow() + timedelta(**settings.TOKEN_EXPIRATION),
+            "iat": datetime.utcnow(),
+            "sub": self.pk,
+            "admin": self.is_superuser,
         }
-        return jwt.encode(
-            payload,
-            settings.SECRET_KEY,
-            algorithm='HS256'
-        )
+        return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
