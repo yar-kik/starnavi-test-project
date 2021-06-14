@@ -1,28 +1,25 @@
-# Test task: Python Developer
+# Test task: Python Developer (Social Network)
+[![Build Status](https://travis-ci.com/yar-kik/starnavi-test-project.svg?branch=master)](https://travis-ci.com/yar-kik/starnavi-test-project)
+[![Coverage Status](https://coveralls.io/repos/github/yar-kik/starnavi-test-project/badge.svg?branch=master)](https://coveralls.io/github/yar-kik/starnavi-test-project?branch=master)
+[![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/downloads/release/python-3810/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-## Social Network
-Object of this task is to create a simple REST API. You can use one framework from this list
-(Django Rest Framework, Flask or FastAPI) and all libraries which you are prefer to use with
-this frameworks.
+## Introduction
+Object of this task is to create a simple REST API. 
 
-## Basic models:
-* User
-* Post (always made by a user)
+API was documented with [Postman](https://documenter.getpostman.com/view/14489034/TzeUn8Ty#cebb3e50-23dd-4728-805d-a0687bfe2d35)
 
-## Basic Features:
+## Technologies
+Project uses such technologies:
+* Django and DRF with JWT-token for auth
+* PostgreSQL
+* Docker for containerizing
+
+## Basic Features
 * user signup
 * user login
 * post creation
-* post like
+* post like/unlike
 * post unlike
 * analytics about how many likes was made. Example url /api/analitics/?date_from=2020-02-02&date_to=2020-02-15. API should return analytics aggregated by day.
 * user activity an endpoint which will show when user was login last time and when he mades a last request to the service.
-
-## Requirements:
-* Implement token authentication (JWT is prefered)
-
-## Notes:
-
-* Clean and usable REST API is important the project is not defined in detail, the candidate should use their best judgment for every
-non-specified requirements (including chosen tech, third party apps, etc), however every decision must be explained and backed by arguments in the interview
-* Result should be sent by providing a Git url. This is a mandatory requirement
