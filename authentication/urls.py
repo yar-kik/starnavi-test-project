@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import RegistrationApiView, LoginApiView
+
+from .views import LoginApiView, RegistrationApiView
 
 app_name = "authentication"
 urlpatterns = [
