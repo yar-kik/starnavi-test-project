@@ -3,3 +3,4 @@ env/
 .idea/
 *.sqlite3
 *.sqlite
+.coverage
