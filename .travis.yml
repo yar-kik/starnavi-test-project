@@ -6,4 +6,6 @@ install:
   - pip install coveralls
 script:
   - flake8 authentication/ blog/ analytics/ --exclude="migrations"
+  - coverage run --source=blog,authentication,analytics --omit="*migrations*" manage.py test && coveralls
+  - coverage report --fail-under=80
   - black --exclude="venv/*" --exclude="migrations/*" authentication/ blog/ analytics/ --line-length 79 --check
