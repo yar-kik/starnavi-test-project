@@ -167,4 +167,4 @@ class TestLikeApiView(APITestCase):
         self.client.get("/api/blog/posts/1/like/")
         response = self.client.get("/api/blog/posts/1/like/")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["detail"], "Post was disliked")
+        self.assertEqual(response.json()["detail"], "Post was unliked")

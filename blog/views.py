@@ -70,7 +70,7 @@ class PostApiView(APIView):
 
 class LikeApiView(APIView):
     """
-    Like or dislike the post.
+    Like or unlike the post.
     """
 
     permission_classes = [IsAuthenticated]
@@ -79,7 +79,7 @@ class LikeApiView(APIView):
         post = get_object_or_404(Post, id=post_id)
         if request.user in post.likes.all():
             post.likes.remove(request.user)
-            message = {"detail": "Post was disliked"}
+            message = {"detail": "Post was unliked"}
         else:
             post.likes.add(request.user)
             message = {"detail": "Post was liked"}
