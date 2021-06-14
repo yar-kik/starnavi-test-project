@@ -5,5 +5,5 @@ install:
   - pip install -r requirements.txt
   - pip install coveralls
 script:
-  - flake8 authentication/ blog/ --exclude="migrations"
-  - black --exclude="venv/*" --exclude="migrations/*" authentication/ blog/ --line-length 79 --check
+  - flake8 authentication/ blog/ analytics/ --exclude="migrations"
+  - black --exclude="venv/*" --exclude="migrations/*" authentication/ blog/ analytics/ --line-length 79 --check
