@@ -15,7 +15,7 @@ class UserManager(BaseUserManager):
     """Custom user manager class"""
 
     def create_user(
-            self, username: str, email: str, password: str = None
+        self, username: str, email: str, password: str = None
     ) -> "User":
         """Create and return user with username, email and password"""
         if username is None:
@@ -41,8 +41,12 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(db_index=True, max_length=32, unique=True,
-                                validators=[ASCIIUsernameValidator()])
+    username = models.CharField(
+        db_index=True,
+        max_length=32,
+        unique=True,
+        validators=[ASCIIUsernameValidator()],
+    )
     email = models.EmailField(db_index=True, unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
