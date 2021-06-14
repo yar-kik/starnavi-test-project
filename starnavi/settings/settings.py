@@ -14,6 +14,12 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from typing import Dict
+DJANGO_ENV = os.environ.get("DJANGO_ENV", "development")
+
+if DJANGO_ENV == "production":
+    from .prod import *
+else:
+    from .dev import *
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,10 +30,6 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "somehardtorememberstring")
 
 TOKEN_EXPIRATION: Dict[str, int] = {"days": 5}
 AUTH_USER_MODEL = 'authentication.User'
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -76,16 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'starnavi.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

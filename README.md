@@ -7,13 +7,30 @@
 ## Introduction
 Object of this task is to create a simple REST API. 
 
-API was documented with [Postman](https://documenter.getpostman.com/view/14489034/TzeUn8Ty#cebb3e50-23dd-4728-805d-a0687bfe2d35)
+API was documented with [Postman](https://documenter.getpostman.com/view/14489034/TzeUn8Ty#cebb3e50-23dd-4728-805d-a0687bfe2d35).
+
+API was deployed on [Heroku](https://starnavi-test-project.herokuapp.com).
 
 ## Technologies
 Project uses such technologies:
 * Django and DRF with JWT-token for auth
 * PostgreSQL
 * Docker for containerizing
+
+## Usage
+Get local copy of project with: 
+```
+git clone https://github.com/yar-kik/starnavi-test-project.git
+``` 
+To build a local development environment and start API server run:  
+```
+docker-compose -f docker-compose-dev.yml up -d 
+``` 
+Or you can build a production ready environment: 
+```
+docker-compose -f docker-compose.yml up -d
+``` 
+This may take a few minutes. Finally, your api will work on `http://localhost:8000/`.
 
 ## Basic Features
 * user signup
