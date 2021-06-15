@@ -2,7 +2,6 @@ from datetime import datetime
 
 from django.utils import timezone
 from rest_framework import status
-from rest_framework.generics import get_object_or_404
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,7 +10,6 @@ from .models import User
 from .serializers import (
     LoginSerializer,
     RegistrationSerializer,
-    UserActivitySerializer,
 )
 
 
@@ -42,15 +40,4 @@ class LoginApiView(APIView):
         user = User.objects.get(username=user_data.get("username"))
         user.last_login = datetime.now(tz=timezone.utc)
         user.save()
-        return Response({"user": serializer.data}, status=status.HTTP_200_OK)
-
-
-class UserActivityApiView(APIView):
-
-    serializer_class = UserActivitySerializer
-
-    def get(self, request: Request, user_id: int) -> Response:
-        """Return information about user activity"""
-        user = get_object_or_404(User, id=user_id)
-        serializer = self.serializer_class(user)
         return Response({"user": serializer.data}, status=status.HTTP_200_OK)
