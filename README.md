@@ -35,8 +35,7 @@ This may take a few minutes. Finally, your api will work on `http://localhost:80
 ## Basic Features
 * user signup
 * user login
-* post creation
-* post like/unlike
-* post unlike
-* analytics about how many likes was made. Example url /api/analitics/?date_from=2020-02-02&date_to=2020-02-15. API should return analytics aggregated by day.
 * user activity an endpoint which will show when user was login last time and when he mades a last request to the service.
+* post creation/read/update/delete
+* post like/unlike
+* analytics about how many likes was made. Example url /api/analitics/?date_from=2020-02-02&date_to=2020-02-15. API should return analytics aggregated by day.
