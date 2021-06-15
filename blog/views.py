@@ -1,4 +1,4 @@
-from .models import Post
+from .models import Like, Post
 from .permissions import IsAuthor
 from .serializers import PostSerializer
 from rest_framework import status
@@ -77,10 +77,13 @@ class LikeApiView(APIView):
 
     def get(self, request: Request, post_id: int) -> Response:
         post = get_object_or_404(Post, id=post_id)
-        if request.user in post.likes.all():
-            post.likes.remove(request.user)
+        like = post.likes.filter(user=request.user).all()
+        if like:
+            like.delete()
             message = {"detail": "Post was unliked"}
         else:
-            post.likes.add(request.user)
+            like = Like.objects.create(user=request.user, post=post)
+            post.likes.add(like)
+            request.user.likes.add(like)
             message = {"detail": "Post was liked"}
         return Response(message, status=status.HTTP_200_OK)

@@ -61,7 +61,5 @@ class TestUserActivityApiView(APITestCase):
         )
 
     def test_user_activity(self):
-        response = self.client.get(
-            "/api/auth/users/1/activity/"
-        )
+        response = self.client.get("/api/auth/users/1/activity/")
         self.assertEqual(response.status_code, 200)
