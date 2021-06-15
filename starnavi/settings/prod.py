@@ -2,7 +2,8 @@ import os
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["starnavi-test-project.herokuapp.com"]
+ALLOWED_HOSTS = ["starnavi-test-project.herokuapp.com", "localhost",
+                 "127.0.0.1"]
 
 DATABASES = {
     'default': {
