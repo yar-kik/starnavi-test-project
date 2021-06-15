@@ -35,8 +35,22 @@ class LoginSerializer(serializers.Serializer):
         user = authenticate(username=username, password=password)
         if user is None:
             raise serializers.ValidationError(
-                "User doesn't exist or " "wrong password"
+                "User doesn't exist or wrong password"
             )
         if not user.is_active:
             raise serializers.ValidationError("This user has been deactivated")
         return {"username": user.username, "token": user.token}
+
+
+class UserActivitySerializer(serializers.ModelSerializer):
+    """Serializer for user activity"""
+
+    class Meta:
+        model = User
+        fields = ("username", "registered", "last_login", "last_request")
+        read_only_fields = (
+            "username",
+            "registered",
+            "last_login",
+            "last_request",
+        )
