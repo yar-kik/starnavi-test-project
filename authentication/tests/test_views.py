@@ -51,15 +51,3 @@ class TestLoginApiView(APITestCase):
             data={"user": {"username": "user", "password": "password"}},
         )
         self.assertEqual(response.status_code, 200)
-
-
-class TestUserActivityApiView(APITestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.user = User.objects.create_user(
-            username="user", email="email@mail.com", password="password"
-        )
-
-    def test_user_activity(self):
-        response = self.client.get("/api/auth/users/1/activity/")
-        self.assertEqual(response.status_code, 200)
